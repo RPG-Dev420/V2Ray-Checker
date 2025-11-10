@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  v2ray-collector:
+    build: .
+    container_name: v2ray-collector
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Tehran
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./subscriptions:/app/subscriptions
+      - ./cache:/app/cache
+      - ./analytics:/app/analytics
+      - ./logs:/app/logs
+    networks:
+      - v2ray-network
+    command: python automation.py --mode auto
+
+  v2ray-api:
+    build: .
+    container_name: v2ray-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - TZ=Asia/Tehran
+      - PYTHONUNBUFFERED=1
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    volumes:
+      - ./subscriptions:/app/subscriptions
+      - ./cache:/app/cache
+      - ./v2ray_collector.db:/app/v2ray_collector.db
+    networks:
+      - v2ray-network
+    command: python api_endpoints.py
+    depends_on:
+      - v2ray-collector
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v1/health" ]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+
+networks:
+  v2ray-network:
+    driver: bridge

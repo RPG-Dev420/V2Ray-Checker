@@ -1,0 +1,141 @@
+{
+  "generated_at": "2025-10-14T19:20:58.740487",
+  "current_performance": {
+    "total_configs": 8811,
+    "working_configs": 6061,
+    "failed_configs": 2750,
+    "success_rate": 68.78901373283396,
+    "avg_latency": 229.44866236120419,
+    "median_latency": 149.6751308441162,
+    "protocol_distribution": {
+      "vless": 5978,
+      "vmess": 2062,
+      "trojan": 534,
+      "ssr": 17,
+      "ss": 173,
+      "hysteria": 47
+    },
+    "country_distribution": {
+      "EU": 177,
+      "US": 2448,
+      "Unknown": 1931,
+      "DE": 90,
+      "IR": 979,
+      "PL": 4,
+      "HK": 87,
+      "NL": 51,
+      "LT": 39,
+      "FR": 94,
+      "TR": 18,
+      "GB": 21,
+      "FI": 5,
+      "JP": 25,
+      "CF": 15,
+      "CH": 5,
+      "SG": 17,
+      "CA": 16,
+      "TW": 13,
+      "IN": 2,
+      "ES": 1,
+      "RU": 2,
+      "SE": 4,
+      "KR": 6,
+      "BR": 3,
+      "UA": 1,
+      "CN": 7
+    },
+    "latency_distribution": {
+      "0-100ms": 33,
+      "100-300ms": 4996,
+      "300-500ms": 417,
+      "500-1000ms": 532,
+      "1000ms+": 83
+    },
+    "top_performing_protocols": [
+      {
+        "protocol": "vless",
+        "count": 4436,
+        "avg_latency": 226.33913484535526,
+        "success_rate": 74.20541987286718
+      },
+      {
+        "protocol": "vmess",
+        "count": 1449,
+        "avg_latency": 212.29446238694806,
+        "success_rate": 70.27158098933074
+      },
+      {
+        "protocol": "trojan",
+        "count": 163,
+        "avg_latency": 452.4860191930291,
+        "success_rate": 30.52434456928839
+      },
+      {
+        "protocol": "ssr",
+        "count": 4,
+        "avg_latency": 470.3548550605774,
+        "success_rate": 23.52941176470588
+      },
+      {
+        "protocol": "ss",
+        "count": 9,
+        "avg_latency": 377.4026499854194,
+        "success_rate": 5.202312138728324
+      }
+    ],
+    "top_performing_countries": [
+      {
+        "country": "US",
+        "count": 2448,
+        "avg_latency": 185.4124274713541
+      },
+      {
+        "country": "Unknown",
+        "count": 1931,
+        "avg_latency": 275.9600841338495
+      },
+      {
+        "country": "IR",
+        "count": 979,
+        "avg_latency": 192.06054899860573
+      },
+      {
+        "country": "EU",
+        "count": 177,
+        "avg_latency": 143.18284476544224
+      },
+      {
+        "country": "FR",
+        "count": 94,
+        "avg_latency": 234.38050138189436
+      }
+    ]
+  },
+  "trends": {
+    "period": "7 days",
+    "config_count_trend": "increasing",
+    "success_rate_trend": "increasing",
+    "latency_trend": "increasing",
+    "top_growing_protocols": [
+      "vmess",
+      "vless",
+      "trojan"
+    ],
+    "top_declining_protocols": [
+      "ss"
+    ]
+  },
+  "summary": {
+    "overall_status": "good",
+    "key_insights": [
+      "خوب، اما نرخ موفقیت 68.8% قابل بهبود است",
+      "تأخیر متوسط 229ms عالی است",
+      "پروتکل محبوب: vless با 5978 کانفیگ",
+      "روند مثبت: تعداد کانفیگ‌ها در حال افزایش است"
+    ],
+    "recommendations": [
+      "افزایش منابع کانفیگ با کیفیت بالا",
+      "بررسی و بهینه‌سازی منابع کند"
+    ]
+  }
+}

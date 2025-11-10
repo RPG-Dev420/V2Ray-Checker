@@ -1,0 +1,78 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["V2Ray Config Collector & Tester"]
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Check project structure
+        run: |
+          echo "📁 Checking project structure..."
+          
+          # بررسی index.html در root
+          if [ -f "index.html" ]; then
+            echo "✅ index.html exists in root"
+          else
+            echo "❌ index.html not found in root"
+          fi
+          
+          # بررسی subscriptions directory
+          if [ -d "subscriptions" ]; then
+            echo "✅ subscriptions directory exists"
+            ls -la subscriptions/*.html 2>/dev/null || echo "No HTML files"
+          else
+            echo "❌ subscriptions directory not found"
+            mkdir -p subscriptions
+          fi
+          
+      - name: Prepare deployment files
+        run: |
+          echo "🔧 Preparing files for deployment..."
+          
+          # کپی فایل‌های subscriptions به root برای دسترسی بهتر
+          if [ -d "subscriptions" ]; then
+            echo "📋 Copying subscription files to root..."
+            cp -r subscriptions/* . 2>/dev/null || echo "No files to copy"
+            
+            # اطمینان از وجود index.html
+            if [ ! -f "index.html" ]; then
+              echo "⚠️ Creating fallback index.html"
+              echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>V2Ray Collector</title></head><body><h1>V2Ray Collector</h1><p>Loading...</p><script>window.location.href="subscriptions/index.html";</script></body></html>' > index.html
+            fi
+          fi
+          
+          echo "📊 Final structure:"
+          ls -la *.html 2>/dev/null || echo "No HTML files in root"
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .  # Deploy کل پروژه
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

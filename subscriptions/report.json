@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-10-13 19:11:28",
+  "total_configs_tested": 3471,
+  "working_configs": 2441,
+  "failed_configs": 1030,
+  "success_rate": "70.3%",
+  "protocols": {
+    "vmess": {
+      "count": 1519,
+      "avg_latency": "191.2ms"
+    },
+    "vless": {
+      "count": 722,
+      "avg_latency": "227.3ms"
+    },
+    "trojan": {
+      "count": 180,
+      "avg_latency": "431.3ms"
+    },
+    "ssr": {
+      "count": 18,
+      "avg_latency": "297.5ms"
+    },
+    "hysteria": {
+      "count": 1,
+      "avg_latency": "271.8ms"
+    },
+    "ss": {
+      "count": 1,
+      "avg_latency": "155.4ms"
+    }
+  }
+}
